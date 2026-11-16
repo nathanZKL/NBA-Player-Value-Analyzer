@@ -1,0 +1,19 @@
+{
+  "tool_version": "0.4.0",
+  "template_version": 5,
+  "files": {
+    ".ai-eng/.gitignore": "67a0dd7c3b2c6731c518146de284493696d5760d76329aa3f9b3635968a77d99",
+    ".claude/agents/implementer.md": "d2db4b2e7c74ac7dccd59edd0747a9c816d6973445c41dfcb6b8a9527849e95d",
+    ".claude/agents/researcher.md": "089d17f291b9059216cb61e282c89de1e110c4c86b3d1a985ebc1f99f193b3bc",
+    ".claude/agents/security-reviewer.md": "b3e4341174287ceb4d23b479fc335588f5128c3bc23f3bb0516b123a8c23a966",
+    ".claude/agents/tester.md": "89e01ba46312278dc79e625602f4a6025a86b3ae0fdd66b2b907d3d2de39d521",
+    ".github/pull_request_template.md": "f2b3d01caeb1ee7fe7f88206c9596f44e3d744b1b4e19fa77d20dbc5177e239b",
+    ".github/workflows/ai-eng-ci.yml": "339e4eb9f6ae3e2ef545d5aa5e67fd48f1cccfd1bcb5c63e32d9d8c7cf1074f8",
+    "AGENTS.md": "5d4c756569c64e935b8e47d00597b451a5f19a62c29ab206f4b2d98f4ba065a1",
+    "CLAUDE.md": "841f19d3f78e848eef79633495b328dc95bff5ba66f8c95afb32d078fb51fad6",
+    "docs/ENGINEERING.md": "774156c2eefe8345f474f5b5106b5b4abcfd73a4310bee14f32c7c8a46ae6888",
+    "docs/ai-eng/coordinator.md": "70d7c09ade6dce43b3d0fa25df850b829307d20b7ced6d8982a6a80bb4257c75",
+    "docs/ai-eng/plan-template.md": "f741686a7e98e5e6323ea97f8cb5bdffa136880a9439f24574247099b2a0aa49",
+    "docs/ai-eng/review-template.md": "830b90bd35e5502764fe09b883b9d17eaded09cba95c7d52b306d797489cc6d5"
+  }
+}

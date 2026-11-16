@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "project": {
+    "name": "NBA-Player-Value-Analyzer",
+    "description": "A local app that ranks and compares NBA players by performance, team fit, salary and value for money, clearly labeling real stats, estimates and mock data.",
+    "stack": "python",
+    "base_branch": "main",
+    "test_command": "python -m pytest"
+  },
+  "coordinator": {
+    "agent": "claude",
+    "model": "opus"
+  },
+  "conductors": {
+    "claude": {
+      "label": "Conductor A",
+      "agent": "claude",
+      "model": "opus",
+      "branch": "conductor/claude",
+      "worktree": "../NBA-Player-Value-Analyzer.worktrees/claude"
+    },
+    "codex": {
+      "label": "Conductor B",
+      "agent": "codex",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "branch": "conductor/codex",
+      "worktree": "../NBA-Player-Value-Analyzer.worktrees/codex"
+    }
+  },
+  "subagents": {
+    "implement": {
+      "default": true,
+      "claude": {
+        "model": "sonnet"
+      },
+      "codex": {
+        "model": "gpt-6.1-terra",
+        "effort": "medium"
+      }
+    },
+    "test": {
+      "default": true,
+      "claude": {
+        "model": "sonnet"
+      },
+      "codex": {
+        "model": "gpt-6.1-terra",
+        "effort": "medium"
+      }
+    },
+    "research": {
+      "default": false,
+      "claude": {
+        "model": "haiku"
+      },
+      "codex": {
+        "model": "gpt-6-luna",
+        "effort": "low"
+      }
+    },
+    "security": {
+      "default": false,
+      "claude": {
+        "model": "opus"
+      },
+      "codex": {
+        "model": "gpt-6.1-sol",
+        "effort": "high"
+      }
+    }
+  },
+  "limits": {
+    "max_subagents_per_conductor": 4,
+    "max_review_rounds": 3
+  },
+  "automation": {
+    "budget_usd": 20,
+    "agent_timeout_minutes": 30,
+    "test_timeout_minutes": 15,
+    "max_fix_attempts": 2
+  },
+  "skills": {
+    "claude": {
+      "plan": [],
+      "build": [
+        "superpowers:test-driven-development",
+        "superpowers:verification-before-completion"
+      ],
+      "fix": [
+        "superpowers:systematic-debugging",
+        "superpowers:receiving-code-review"
+      ],
+      "review": []
+    },
+    "codex": {
+      "plan_review": [],
+      "research": [],
+      "implement": [
+        "superpowers:test-driven-development"
+      ],
+      "test": [
+        "superpowers:test-driven-development",
+        "superpowers:verification-before-completion"
+      ],
+      "fix": [
+        "superpowers:systematic-debugging",
+        "superpowers:receiving-code-review"
+      ],
+      "security": [],
+      "review": []
+    }
+  },
+  "ci": {
+    "enabled": true
+  }
+}

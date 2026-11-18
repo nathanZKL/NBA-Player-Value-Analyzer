@@ -75,19 +75,11 @@ Don't use the Mac's default `python3` (3.9.6): it fails at import (`StrEnum`). `
 - The cloud development environment cannot reach NBA.com, Basketball-Reference, Spotrac or HoopsHype. Build and test with mock data there; real fetches run on Nathan's machine.
 - No secrets or API keys are needed. If one is ever needed, add `.env.example` with placeholder values only; `.env` is git-ignored.
 
-<!-- ai-eng:begin (managed by ai-eng; edits inside this block are replaced on upgrade) -->
-# Claude Code instructions: main
+## Dual-conductor workflow (Orca)
 
-Read `docs/ENGINEERING.md` first. It is the source of truth for roles, gates and rules.
+Feature work runs through Orca orchestration: a Claude coordinator plans, Codex reviews the plan, Claude and Codex conductors build in their own Orca workspaces, each reviews the other's commit, and Nathan merges draft PRs. The whole loop, roles, models and rules: [docs/ENGINEERING.md](docs/ENGINEERING.md#dual-conductor-workflow-orca).
 
-**If you were started as the coordinator:** follow `docs/ai-eng/coordinator.md`. Write plans, not product code.
-
-**Otherwise you are Conductor A** (model opus), working in `../main.worktrees/claude`. Codex is Conductor B and your peer reviewer.
-
-- Work only on tasks the approved plan assigns to Claude Code. Create a task branch from `main` for each one.
-- Subagents live in `.claude/agents/`. Run `implementer` and `tester` by default. Run `researcher` or `security-reviewer` only when the task asks for them or you find a concrete need. At most 4 at once.
-- A task is ready to publish when `python -m pytest` passes, the work is committed, and `ai-eng review check --branch <task-branch>` exits 0 (Codex gave GO on that exact SHA). Then push and open a **draft** PR. Never merge.
-- When Codex asks you to review its commit, review the exact SHA. To run its tests, commit or stash your own work, run `git switch --detach <codex-branch>` (the branch itself is checked out in Codex's worktree), test, then switch back. Record the verdict:
-  `ai-eng review record --kind commit --branch <codex-branch> --verdict GO|NO-GO --reviewer claude --author codex --test "..." --finding "..."`
-- Never review your own commits.
-<!-- ai-eng:end -->
+- **You are the coordinator** when you run in the main checkout, your prompt has no Orca Task/Dispatch preamble, and Nathan gives you a feature idea or asks for the workflow. Follow [docs/workflow/coordinator.md](docs/workflow/coordinator.md). Write plans, not product code.
+- **You are an Orca worker** when your prompt has a Task/Dispatch preamble (a conductor, reviewer or subagent worker). Do only that task, in the workspace you were started in, and report with `worker_done` in the shape the task asks for.
+  - As a **conductor**, use your `.claude/agents/` subagents: `implementer` and `tester` by default, `researcher` or `security-reviewer` only when the task asks for them or you find a concrete need. At most 4 at once. Commit on your branch when the tests pass; never push, open PRs or merge.
+  - As a **reviewer**, never edit, stage, commit, stash or switch branches. Never review your own commit.

@@ -1,5 +1,9 @@
 {
   "permissions": {
+    "allow": [
+      "Bash(orca orchestration:*)",
+      "Bash(orca skills get:*)"
+    ],
     "deny": [
       "Read(./.env)",
       "Read(./.env.*)",

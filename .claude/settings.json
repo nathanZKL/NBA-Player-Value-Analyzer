@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(orca orchestration:*)",
+      "Bash(orca skills get:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git push --force-with-lease:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git branch -D:*)",
+      "Bash(git worktree remove:*)",
+      "Bash(gh pr merge:*)"
+    ]
+  }
+}

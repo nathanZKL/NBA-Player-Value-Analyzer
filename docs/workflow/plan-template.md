@@ -1,0 +1,39 @@
+# Plan: <title>
+
+<!-- Copy to docs/workflow/plans/<plan-id>.md. -->
+
+- **Plan id:** <plan-id>
+- **Status:** draft | approved | in review | GO
+- **Owner request:** <the feature idea, in the owner's words>
+
+## Goal and scope
+
+<What changes for users. What is explicitly out of scope.>
+
+## Architecture
+
+<Components, data flow, key decisions and why. Keep it short.>
+
+## Interfaces
+
+<Functions, endpoints, schemas, events or files that tasks provide or depend on. Exact names and types.>
+
+## Tasks
+
+### T1: <task title>
+
+- **Owner:** claude | codex
+- **Files:** <paths this task may change>
+- **Provides / uses:** <interfaces>
+- **Acceptance criteria:**
+  - [ ] <checkable statement, ideally a test>
+- **Subagents:** implement, test (+ research | security if needed, with the reason)
+- **Depends on:** <task ids or none>
+
+## Risks and open questions
+
+<Anything the reviewer or Nathan must decide.>
+
+## Review notes
+
+<Plan review rounds: each finding and how it was addressed, or why it was not.>

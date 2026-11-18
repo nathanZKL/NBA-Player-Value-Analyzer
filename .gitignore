@@ -22,6 +22,9 @@ data/salaries/
 .claude/worktrees/
 .playwright-mcp/
 
+# Workflow plans are local working files in the main checkout
+docs/workflow/plans/
+
 # OS / editor
 .DS_Store
 .idea/

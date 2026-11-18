@@ -74,3 +74,12 @@ Don't use the Mac's default `python3` (3.9.6): it fails at import (`StrEnum`). `
 
 - The cloud development environment cannot reach NBA.com, Basketball-Reference, Spotrac or HoopsHype. Build and test with mock data there; real fetches run on Nathan's machine.
 - No secrets or API keys are needed. If one is ever needed, add `.env.example` with placeholder values only; `.env` is git-ignored.
+
+## Dual-conductor workflow (Orca)
+
+Feature work runs through Orca orchestration: a Claude coordinator plans, Codex reviews the plan, Claude and Codex conductors build in their own Orca workspaces, each reviews the other's commit, and Nathan merges draft PRs. The whole loop, roles, models and rules: [docs/ENGINEERING.md](docs/ENGINEERING.md#dual-conductor-workflow-orca).
+
+- **You are the coordinator** when you run in the main checkout, your prompt has no Orca Task/Dispatch preamble, and Nathan gives you a feature idea or asks for the workflow. Follow [docs/workflow/coordinator.md](docs/workflow/coordinator.md). Write plans, not product code.
+- **You are an Orca worker** when your prompt has a Task/Dispatch preamble (a conductor, reviewer or subagent worker). Do only that task, in the workspace you were started in, and report with `worker_done` in the shape the task asks for.
+  - As a **conductor**, use your `.claude/agents/` subagents: `implementer` and `tester` by default, `researcher` or `security-reviewer` only when the task asks for them or you find a concrete need. At most 4 at once. Commit on your branch when the tests pass; never push, open PRs or merge.
+  - As a **reviewer**, never edit, stage, commit, stash or switch branches. Never review your own commit.
